@@ -1,60 +1,61 @@
 # CAWildFireProject
 Data Science/Analytics Project Using CA Wildfire Data
 
-## Overview
-This project analyzes historical wildfire data in California to understand trends, explore relationships with climate and human factors, and build predictive models. It combines exploratory analysis, geospatial visualization, and machine learning to answer the primary question:
+## Project Summary
 
-> **How have wildfire patterns and impacts in California changed over time, and what factors best predict their severity and outcomes?**
-
----
+• Analyzed California wildfire data from multiple sources including fire incidents, weather, and socioeconomic factors.  
+• Explored wildfire trends, spatial patterns, and seasonal effects using maps, clustering, and statistical tests.  
+• Built predictive models for fire size, mega fire classification, and damage cost estimation using Random Forest, XGBoost, and linear regression. 
+• Evaluated model performance with metrics such as R², precision, recall, ROC-AUC, and visualized results with plots.  
+• Conducted statistical tests to compare fire causes and examine fire size differences by season.
 
 ## Project Structure
 
-CAWildFireProject/
+- 01_data_preparation.ipynb  
+  Loads and cleans raw wildfire, weather, and socioeconomic data; performs feature engineering.
 
-- 01_data_preparation.ipynb # Data loading, cleaning, merging
-- 02_eda_visuals.ipynb # Visual exploratory analysis and mapping
-- 03_modeling_predictions.ipynb # Regression and classification models
-- 04_results_report.ipynb # Final summary, key findings, limitations
+- 02_eda_visualization.ipynb  
+  Performs exploratory data analysis with time series, maps, and clustering to understand fire patterns.
 
-data/ # Raw and processed datasets
-- CAWeatherFirePrediction.csv
-- CAFireParameter.csv.csv
-- countyRisk.csv
-- dataset1_cleaned.csv
-- dataset2_cleaned.csv
-- dataset3_cleaned.csv
+- 03_modeling_predictions.ipynb  
+  Develops machine learning models for predicting fire size, classifying mega fires, and estimating damage costs.
 
-Additional Files
-- models/ # Saved models and SHAP values
-- figures/ # Generated plots and visualizations
-- README.md # Project overview and usage
-- requirements.txt # Python package dependencies
+- 04_results_figures_report.ipynb  
+  Summarizes findings, reports model performance, and presents statistical test results.
 
----
+## Dataset
 
-## Data Sources
+Datasets used include:  
 
-- **df1:** Daily weather and fire metrics (from NOAA and Cal Fire)
-- **df2:** Fire perimeter shapefiles + metadata (Cal Fire perimeter dataset)
-- **df3:** FEMA Risk Index and county-level socioeconomic data
+- Fire incident records with fire perimeters and cause data  
+- Daily weather data with temperature, wind, and precipitation  
+- Socioeconomic and built environment risk indicators by county  
+- California county shapefiles for spatial joins and mapping  
 
----
+## Model Details
 
-## Key Analyses
+- Fire size prediction: Random Forest Regressor (R² = 0.956)  
+- Mega fire classification: Random Forest and XGBoost classifiers (ROC-AUC = 1.00, but low recall due to class imbalance)  
+- Damage cost estimation: Linear Regression and XGBoost regression (XGBoost R² = 0.999)  
 
-- Trends in fire size, frequency, and duration by season/year
-- Climate–fire correlations using regression
-- Geospatial mapping of hotspots
-- Predictive models:
-  - Fire size (regression)
-  - Mega fires (binary classification)
-  - Damage cost (regression)
+## Outputs
 
----
+- Predictive model performance metrics and plots  
+- Statistical test results comparing fire causes and seasonal fire sizes  
+- Data merges and feature-engineered datasets saved as CSV  
+- Visualizations including ROC curves, precision-recall curves, and residual plots  
 
-## Modeling Techniques
+## Key Findings
 
-- **Random Forests**, **XGBoost**, and **Linear Regression**
-- **SHAP** for feature importance and model interpretation
-- **Classification metrics**: ROC, precision, recall, F1
+- Wildfires have increased in frequency and size, with longer fire seasons.  
+- Human-caused fires tend to cause higher economic losses than lightning-caused fires.  
+- Climate variables like temperature and wind speed strongly influence fire size.  
+- Damage cost depends more on built environment and population density than just fire size.  
+- Mega fires are rare, making them difficult to detect accurately with current models.  
+- Statistical tests show significant differences in losses by fire cause and fire size distributions by season.  
+
+## Limitations
+
+- Missing or inconsistent data in fire perimeters and damage estimates.  
+- Highly imbalanced classes for mega fire classification reduce model recall.  
+- Historical data may not capture future wildfire risks under climate change.  
